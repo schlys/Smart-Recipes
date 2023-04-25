@@ -21,7 +21,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            schlys/5914-project
+            schlys/smart-recipes
           tags: |
             type=ref,event=pr
             type=raw,value=latest,enable=${{ github.event_name != 'pull_request' }}
