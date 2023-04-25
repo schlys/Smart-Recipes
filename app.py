@@ -1,15 +1,10 @@
 from flask import Flask, request, render_template, jsonify, redirect, url_for, session
-import base64
+import base64, json, os, secrets, AI_Rec
 from Speech.SpeechToText import speech_to_text
 import Databases.elastic as es
 import Databases.user_db as db
 from Databases.models import User
-import HelperMethods.HelperMethods as HM
-from Speech.TextToSpeech import text_to_speech
-import json, os, secrets
-import AI_Rec
 import Camera.CameraCapture as Camera
-import WordSearch.WordSearch as WS
 from functools import wraps
 
 import os
@@ -151,15 +146,6 @@ def text():
     return jsonify([ingredient])
 
 
-@app.route('/generate-puzzle', methods=['GET', 'POST'])
-@login_required
-def generate_puzzle():
-    curr_items = request.json.get('currItems', [])
-    puzzle = WS.create_word_search(curr_items)
-    response_data = {"puzzle": puzzle}
-    return json.dumps(response_data)
-
-
 @app.route('/savePicture', methods=['GET', 'POST'])
 @login_required
 def savePicture():
@@ -186,12 +172,6 @@ def searchItems():
     ingredients = request.json.get('ingredients')
     return redirect(url_for('recipes', items=json.dumps(ingredients)))
 
-
-# Page Reader Route
-@app.route('/read-page', methods=['POST'])
-def read_page():
-    webpage = request.json.get('webpage')
-    text_to_speech(webpage)
 
 
 @app.route('/recipes', methods=['GET', 'POST'])
