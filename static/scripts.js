@@ -140,41 +140,41 @@ function takePicture() {
 
 
 function show_ai_output() {
-    fetch("/ai-img", {
-        method: "POST",
-        headers: {
-            'Content-Type': 'image/png'
-        }
-    }).then((response) => {
-        return response.json(); // Parse response as JSON data
-    }).then((data) => {
-        // console.log(data);
-        document.getElementById("ai_img").src = 'data:image/png;base64,' + data;
-    })
-    var image = document.querySelectorAll(".image-ai-result img");
-    image[0].classList.add("active");
+    // fetch("/ai-img", {
+    //     method: "POST",
+    //     headers: {
+    //         'Content-Type': 'image/png'
+    //     }
+    // }).then((response) => {
+    //     return response.json(); // Parse response as JSON data
+    // }).then((data) => {
+    //     // console.log(data);
+    //     document.getElementById("ai_img").src = 'data:image/png;base64,' + data;
+    // })
+    // var image = document.querySelectorAll(".image-ai-result img");
+    // image[0].classList.add("active");
 }
 
 // show_ai_output()
 
 
 function sendImageToAI() {
-    var imageInput = document.getElementById("imageInputAI");
-    var image = imageInput.files[0];
+    // var imageInput = document.getElementById("imageInputAI");
+    // var image = imageInput.files[0];
 
-    var formData = new FormData();
-    formData.append("image", image);
+    // var formData = new FormData();
+    // formData.append("image", image);
 
-    fetch("/ai-rec", {
-        method: "POST",
-        body: formData
-    }).then((response) => {
-        return response.json(); // Parse response as JSON data
-    }).then((items) => {
-        addIngredients(items)
-    }).then(() => {
-        show_ai_output();
-    })
+    // fetch("/ai-rec", {
+    //     method: "POST",
+    //     body: formData
+    // }).then((response) => {
+    //     return response.json(); // Parse response as JSON data
+    // }).then((items) => {
+    //     addIngredients(items)
+    // }).then(() => {
+    //     show_ai_output();
+    // })
 }
 
 

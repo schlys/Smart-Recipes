@@ -1,12 +1,12 @@
 from flask import Flask, request, render_template, jsonify, redirect, url_for, session
-import base64, json, os, secrets, AI_Rec
+import base64, json, os, secrets
 from Speech.SpeechToText import speech_to_text
 import Databases.elastic as es
 import Databases.user_db as db
 from Databases.models import User
 import Camera.CameraCapture as Camera
 from functools import wraps
-
+# import AI_Rec
 import os
 from werkzeug.utils import secure_filename
 
@@ -74,55 +74,40 @@ def liked():
     return render_template('liked.html', items=es.get_recipes(User().get_liked()))
 
 
-@app.route("/team", methods=["GET", "POST"])
-def team():
-    return render_template("team.html")
-
-
-@app.route("/feedback", methods=["GET", "POST"])
-@login_required
-def feedback():
-    return render_template("feedback.html")
-
-
-@app.route("/games", methods=["GET", "POST"])
-@login_required
-def games():
-    return render_template("games.html")
 
 
 
-@app.route('/ai-rec', methods=['GET', "POST"])
-@login_required
-def run_AI():
-    file = request.files['image']
-    filename = secure_filename(file.filename)
-    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+# @app.route('/ai-rec', methods=['GET', "POST"])
+# @login_required
+# def run_AI():
+#     file = request.files['image']
+#     filename = secure_filename(file.filename)
+#     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
-    print("AI Recognizing...")
-    # items.addItem(barcode)
-    # newItems = items.returnItems()
+#     print("AI Recognizing...")
+#     # items.addItem(barcode)
+#     # newItems = items.returnItems()
 
-    AI = AI_Rec.AI_recognition.AIRec(ViT_path='./AI_Rec/ViTmodel/ViTmodel.pth')
-    img = AI.load_pil_img(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-    box_list = AI.inference(img)
-    img_pil = AI.draw_box_output(img, box_list)
-    # AI.show_pil_img(img_pil)
-    AI.save_pil_img(img_pil, os.path.join(app.config['UPLOAD_FOLDER'], "out.png"))
-    return AI.box_list_to_material_list(box_list, threshold=0.8)
+#     AI = AI_Rec.AI_recognition.AIRec(ViT_path='./AI_Rec/ViTmodel/ViTmodel.pth')
+#     img = AI.load_pil_img(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+#     box_list = AI.inference(img)
+#     img_pil = AI.draw_box_output(img, box_list)
+#     # AI.show_pil_img(img_pil)
+#     AI.save_pil_img(img_pil, os.path.join(app.config['UPLOAD_FOLDER'], "out.png"))
+#     return AI.box_list_to_material_list(box_list, threshold=0.8)
 
 
-@app.route('/ai-img', methods=['GET', "POST"])
-@login_required
-def get_ai_img():
-    with open(os.path.join(app.config['UPLOAD_FOLDER'], "out.png"), "rb") as f:
-        image_binary = f.read()
+# @app.route('/ai-img', methods=['GET', "POST"])
+# @login_required
+# def get_ai_img():
+#     with open(os.path.join(app.config['UPLOAD_FOLDER'], "out.png"), "rb") as f:
+#         image_binary = f.read()
 
-        response = base64.b64encode(image_binary)
-        response = response.decode("utf-8")
-        # print(f"respond base64 img: {response}")
-        print(f"responded base64 img")
-        return json.dumps(response)
+#         response = base64.b64encode(image_binary)
+#         response = response.decode("utf-8")
+#         # print(f"respond base64 img: {response}")
+#         print(f"responded base64 img")
+#         return json.dumps(response)
 
 
 @app.route("/speech", methods=["GET", 'POST'])
