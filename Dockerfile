@@ -24,7 +24,7 @@ COPY . .
 
 
 #Tian:  this action will download the model with a sample run.
-RUN python3 ./AI_Rec/AI_recognition.py
+# RUN python3 ./AI_Rec/AI_recognition.py
 
 CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 60 app:app
 
