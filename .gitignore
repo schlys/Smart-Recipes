@@ -1,7 +1,7 @@
 __pycache__
 *.pyc
 /.DS_Store
-/venv
+/.venv
 /.vscode
 page.mp3
 test.py

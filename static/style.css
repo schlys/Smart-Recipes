@@ -109,45 +109,6 @@ button[type="submit"]:hover, button[type="button"]:hover {
     pointer-events: none;
 }
 
-.logo-container {
-    position: fixed;
-    top: 0;
-    right: 0;
-    transition: opacity 0.3s ease-out;
-}
-
-.logo {
-    width: 100px;
-    height: 100px;
-}
-
-.logo-container.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.image-carousel {
-    position: relative;
-    height: 400px;
-    width: 666px;
-    overflow: hidden;
-    margin: 0 auto;
-}
-
-.image-carousel img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-.image-carousel img.active {
-    opacity: 1;
-}
 
 .image-ai-result img {
     object-fit: cover;
@@ -168,61 +129,12 @@ ul {
     list-style-type: none;
 }
 
-#comment-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.comment {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 10px 0;
-    padding: 10px;
-    border: 1px solid black;
-    max-width: 400px;
-}
-
-.comment-actions {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-top: 10px;
-}
-
-.comment-actions button {
-    margin: 0 5px;
-    padding: 5px 10px;
-    font-size: 14px;
-}
-
-.team_pics {
-    width: 250px;
-    height: auto;
-    margin-bottom: 20px;
-    margin-top: 5px;
-}
-
-.team_names {
-    font-weight: bold;
-}
 
 .username {
     float: left;
     margin-left: 5%;
 }
 
-#dark-mode {
-    position: absolute;
-    top: 60px;
-    left: 150px;
-}
 
 #items {
     list-style: none; /* remove bullet points */
@@ -317,17 +229,6 @@ ul {
     }
 }
 
-.puzzle-container {
-    display: inline-block;
-    height: 350px;
-    width: 350px;
-    margin: 10px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    overflow: auto;
-    font-family: monospace;
-    font-size: 20px;
-}
 
 .actions-container {
     display: flex;
@@ -335,55 +236,7 @@ ul {
     align-items: flex-end;
 }
 
-/*Dark mode*/
-.body.dark-mode {
-    background-color: black;
-    color: white;
-}
 
-/* Styles for header in dark mode */
-.body.dark-mode h1 {
-    color: white;
-}
-
-.body.dark-mode h2 {
-    color: white;
-}
-
-/* Style the main image in dark mode */
-.body.dark-mode img {
-    filter: brightness(50%);
-}
-
-/* Styles for the text description in dark mode */
-.body.dark-mode p {
-    color: white;
-}
-
-/* Styles for the form elements in dark mode */
-.body.dark-mode label {
-    color: white;
-}
-
-/* Styles for the buttons in dark mode */
-.body.dark-mode button[type="submit"], .body.dark-mode button[type="button"], .body.dark-mode #imageInput, .body.dark-mode #imageInputAI {
-    background-color: white;
-    color: black;
-}
-
-.body.dark-mode button[type="submit"]:hover, .body.dark-mode button[type="button"]:hover {
-    background-color: #005fa3;
-}
-
-/* Styles for the sidebar in dark mode */
-.body.dark-mode .sidebar {
-    background-color: grey;
-    color: white;
-}
-
-.body.dark-mode a {
-    color: white;
-}
 
 /* styles for login page */
 .login-container {

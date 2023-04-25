@@ -78,22 +78,6 @@ function search() {
     });
 }
 
-function sendImageToBarcodeScanner() {
-    var imageInput = document.getElementById("imageInput");
-    var image = imageInput.files[0];
-
-    var formData = new FormData();
-    formData.append("image", image);
-
-    fetch("/scan-barcode", {
-        method: "POST",
-        body: formData
-    }).then((response) => {
-        return response.json(); // Parse response as JSON data
-    }).then((items) => {
-        addIngredients(items)
-    })
-}
 
 function sendToSpeech() {
     event.preventDefault();
@@ -154,17 +138,6 @@ function takePicture() {
     })
 }
 
-function startCarousel() {
-    var images = document.querySelectorAll(".image-carousel img");
-    var index = 0;
-    setInterval(function () {
-        images[index].classList.remove("active");
-        index = (index + 1) % images.length;
-        images[index].classList.add("active");
-    }, 3000);
-}
-
-startCarousel();
 
 function show_ai_output() {
     fetch("/ai-img", {
@@ -246,63 +219,3 @@ function toggleLikes(like) {
     })
 }
 
-//Dark mode
-function toggleDarkMode() {
-    var body = document.getElementById('body');
-    body.classList.toggle('dark-mode');
-    // Save the user's preference to local storage
-    var isDarkModeEnabled = body.classList.contains('dark-mode');
-    localStorage.setItem('dark-mode-enabled', isDarkModeEnabled);
-}
-
-// Load the user's preferred mode from local storage
-var isDarkModeEnabled = localStorage.getItem('dark-mode-enabled');
-if (isDarkModeEnabled === 'true') {
-    document.getElementById('body').classList.add('dark-mode');
-}
-
-//----------------- feedback page functions ------------------------------//
-function submitComment() {
-    var comment = document.getElementById("comment").value;
-    var commentSection = document.getElementById("comment-section");
-    var newComment = document.createElement("div");
-    newComment.classList.add("comment");
-    newComment.innerHTML = `
-      <span class="comment-text">${comment}</span>
-      <div class="comment-actions">
-        <button onclick="editComment(this)">Edit</button>
-        <button onclick="deleteComment(this)">Delete</button>
-      </div>
-    `;
-    commentSection.insertBefore(newComment, commentSection.firstChild);
-    document.getElementById("comment").value = "";
-    document.getElementById("comment").focus();
-    saveComments(commentSection.innerHTML);
-}
-
-function editComment(button) {
-    var commentText = button.parentNode.parentNode.querySelector(".comment-text");
-    var newText = prompt("Enter new comment text", commentText.innerText);
-    if (newText !== null) {
-        commentText.innerText = newText;
-        saveComments(document.getElementById("comment-section").innerHTML);
-    }
-}
-
-function deleteComment(button) {
-    var comment = button.parentNode.parentNode;
-    comment.parentNode.removeChild(comment);
-    saveComments(document.getElementById("comment-section").innerHTML);
-}
-
-function saveComments(comments) {
-    localStorage.setItem("userComments", comments);
-}
-
-function loadComments() {
-    var commentSection = document.getElementById("comment-section");
-    var comments = localStorage.getItem("userComments");
-    if (comments) {
-        commentSection.innerHTML = comments;
-    }
-}

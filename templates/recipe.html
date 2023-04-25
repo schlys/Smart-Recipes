@@ -2,9 +2,6 @@
 
 {% block content %}
 <div class="body container">
-    <div class="logo-container">
-        <img src="/static/images/Logo.png" alt="Logo" class="logo">
-    </div>
     <h1 class="h1">Smart Recipes</h1>
     <h2>{{ recipe.title }}</h2>
 
@@ -21,9 +18,4 @@
         {{ recipe.instructions }}
     </div>
 </div>
-
-<script>
-
-    hideWhenScrolled(".logo-container");
-  </script>
 {% endblock %}

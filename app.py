@@ -1,7 +1,6 @@
-from flask import Flask, request, render_template, jsonify, redirect, url_for, session, send_file, make_response
+from flask import Flask, request, render_template, jsonify, redirect, url_for, session
 import base64
 from Speech.SpeechToText import speech_to_text
-import Barcode.BarcodeScanner as BS
 import Databases.elastic as es
 import Databases.user_db as db
 from Databases.models import User
@@ -96,20 +95,6 @@ def feedback():
 def games():
     return render_template("games.html")
 
-
-# Input Data Route
-@app.route('/scan-barcode', methods=['GET', "POST"])
-@login_required
-def scan_barcode():
-    image_binary = request.files['image'].read()
-
-    # pass the image binary data to the BarcodeScanner function
-    barcode = BS.BarcodeScanner(image_binary)
-    barcode = HM.get_keyword(barcode)
-
-    User().add_ingredient(barcode)
-    db.update_doc(User().username())
-    return [barcode]
 
 
 @app.route('/ai-rec', methods=['GET', "POST"])
