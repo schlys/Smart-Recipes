@@ -5,4 +5,7 @@ __pycache__
 /.vscode
 page.mp3
 test.py
-uploads/*
+# uploads/*
+
+/AI_Rec
+/uploads
