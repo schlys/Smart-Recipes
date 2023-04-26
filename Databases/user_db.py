@@ -8,7 +8,6 @@ def initialize():
     global DB
 
     cluster = MongoClient(os.environ.get('MONGODB'))
-    # cluster = MongoClient('mongodb+srv://admin:xOAKtwZDIwshgLvX@smart-recipes.rfjjamv.mongodb.net/?retryWrites=true&w=majority')
     db = cluster.smart_recipes
     user_db = db.users
 
