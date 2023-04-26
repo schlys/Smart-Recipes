@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, jsonify, redirect, url_for, session
-import base64, json, os, secrets
+import json, os, secrets
 from speech.speech_to_text import speech_to_text
 import databases.elastic as es
 import databases.user_db as db

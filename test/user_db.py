@@ -1,4 +1,4 @@
-import pymongo, os, bcrypt
+import os, bcrypt
 from pymongo import MongoClient
 from databases.models import User
 
