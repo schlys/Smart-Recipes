@@ -1,6 +1,6 @@
 import cv2
 
-def takePic():
+def take_pic():
     # Load the default camera
     cap = cv2.VideoCapture(0)
 

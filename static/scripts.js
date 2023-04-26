@@ -1,33 +1,3 @@
-function readWebpage() {
-    // Get the rendered HTML content of the page
-    var content = document.documentElement.outerHTML;
-
-    var data = {webpage: content};
-    fetch("/read-page", {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
-}
-
-
-function hideWhenScrolled(elementClass) {
-    window.addEventListener("scroll", function () {
-        var element = document.querySelector(elementClass);
-        if (window.scrollY > 0) {
-            element.classList.add("hidden");
-        } else {
-            element.classList.remove("hidden");
-        }
-    });
-}
-
-function goBack() {
-    window.history.back();
-}
-
 //----------------- home page functions ------------------------------//
 function logout() {
     fetch("/signout", {
@@ -53,7 +23,7 @@ function getSelected(remove) {
 }
 
 function remove() {
-    fetch("/removeItems", {
+    fetch("/remove_items", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -65,7 +35,7 @@ function remove() {
 }
 
 function search() {
-    fetch("/searchItems", {
+    fetch("/search_items", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -106,7 +76,6 @@ function addIngredients(items) {
 }
 
 var checked = true;
-
 function selectAll() {
     checkboxes = document.getElementsByName('ingredient');
     for (checkbox of checkboxes) checkbox.checked = !checked;
@@ -133,7 +102,7 @@ function handleEnterKeyDown(event) {
 }
 
 function takePicture() {
-    fetch("/savePicture", {
+    fetch("/save_pic", {
         method: "POST",
     })
 }

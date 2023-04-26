@@ -4,7 +4,7 @@ from speech.speech_to_text import speech_to_text
 import databases.elastic as es
 import databases.user_db as db
 from databases.models import User
-import camera.camera_capture as Camera
+import camera.camera_capture as camera
 from functools import wraps
 # import ai_rec
 import os
@@ -131,16 +131,16 @@ def text():
     return jsonify([ingredient])
 
 
-@app.route('/savePicture', methods=['GET', 'POST'])
+@app.route('/save_picture', methods=['GET', 'POST'])
 @login_required
-def savePicture():
-    Camera.takePic()
+def save_pic():
+    camera.take_pic()
     return ""
 
 
-@app.route('/removeItems', methods=['POST'])
+@app.route('/remove_items', methods=['POST'])
 @login_required
-def removeItems():
+def remove_items():
     items = request.json.get('ingredients')
 
     for item in items:
@@ -151,9 +151,9 @@ def removeItems():
 
 
 # Return items route
-@app.route('/searchItems', methods=['POST'])
+@app.route('/search_items', methods=['POST'])
 @login_required
-def searchItems():
+def search_items():
     ingredients = request.json.get('ingredients')
     return redirect(url_for('recipes', items=json.dumps(ingredients)))
 
