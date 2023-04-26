@@ -1,12 +1,12 @@
 from flask import Flask, request, render_template, jsonify, redirect, url_for, session
 import base64, json, os, secrets
-from Speech.SpeechToText import speech_to_text
-import Databases.elastic as es
-import Databases.user_db as db
-from Databases.models import User
-import Camera.CameraCapture as Camera
+from speech.speech_to_text import speech_to_text
+import databases.elastic as es
+import databases.user_db as db
+from databases.models import User
+import camera.camera_capture as Camera
 from functools import wraps
-# import AI_Rec
+# import ai_rec
 import os
 from werkzeug.utils import secure_filename
 

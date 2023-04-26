@@ -1,6 +1,6 @@
 import pymongo, os, bcrypt
 from pymongo import MongoClient
-from Databases.models import User
+from databases.models import User
 
 DB = None
 

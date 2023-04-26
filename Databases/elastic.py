@@ -1,7 +1,6 @@
 from elasticsearch import Elasticsearch, helpers
-from flask import session
-from Databases.es_utility import get_data
-from Databases.models import User
+from databases.es_utility import get_data
+from databases.models import User
 import re, os
 
 ES = None
